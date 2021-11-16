@@ -1,10 +1,9 @@
 import { galleryItems } from './gallery-items.js';
-// Change code below this line
 
 const galleryListEl = document.querySelector('.gallery')
 
 const imgEl = galleryItems.map(img => 
-    `<a class="gallery__link" href="#">
+    `<a class="gallery__link" href="${img.original}">
         <img
             class="gallery__image"
             src="${img.preview}"
@@ -15,20 +14,18 @@ const imgEl = galleryItems.map(img =>
     
 galleryListEl.insertAdjacentHTML("afterbegin", imgEl);
 
-
-
 galleryListEl.addEventListener('click', (event) => {
     console.log(event.target);
     event.preventDefault();
     if (event.target.nodeName !== 'IMG') {
       return;
     }
+    const h = event.target.dataset.source;
     const instance = basicLightbox.create(
-      `<img src=‘${event.target.dataset.source}>`
+      `<img src="${h}" >`
     );
     instance.show();
   });
   
   
   
-  // console.log(galleryItems);
